@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="sorting_by">
+        <item>Date</item>
+        <item>Version</item>
+        <item>Commit</item>
+        <item>Build variant</item>
+    </string-array>
+</resources>

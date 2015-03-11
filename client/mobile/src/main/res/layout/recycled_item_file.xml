@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="8dp"
+    android:background="@drawable/btn_list"
+    android:layout_width="match_parent"
+    android:layout_height="72dp">
+
+    <com.lorentzos.adp.widget.AutoResizeTextView
+        android:id="@+id/version"
+        tools:text="1.0.1"
+        style="@style/TextAppearance.AppCompat.Display1"
+        android:singleLine="true"
+        android:layout_width="72dp"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/commit"
+        tools:text="Commit: afa38ed"
+        style="@style/TextAppearance.AppCompat.Body2"
+        android:singleLine="true"
+        android:layout_marginLeft="@dimen/abc_dropdownitem_text_padding_left"
+        android:layout_marginStart="@dimen/abc_dropdownitem_text_padding_left"
+        android:layout_toRightOf="@+id/version"
+        android:layout_toEndOf="@+id/version"
+        android:layout_toLeftOf="@+id/date"
+        android:layout_toStartOf="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="marquee" />
+
+    <TextView
+        android:id="@+id/date"
+        tools:text="Feb 3 2015, 12:58:39"
+        style="@style/TextAppearance.AppCompat.Caption"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/build_variant"
+        tools:text="developDebug"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:gravity="center_horizontal"
+        android:layout_below="@+id/commit"
+        android:layout_alignLeft="@id/commit"
+        android:layout_alignStart="@id/commit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/notes"
+        tools:text="This version is blah blah blah lorem dorum ipsum"
+        android:layout_below="@+id/build_variant"
+        android:layout_alignLeft="@id/build_variant"
+        android:layout_alignStart="@id/build_variant"
+        android:singleLine="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+</RelativeLayout>
