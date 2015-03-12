@@ -134,7 +134,7 @@ You can install the latest client application from [Google Play](TODO).
 
 By default the application asks for the base api endpoint of your server and the token you choose. Upon saving the preferences you will simply see the list of the availiable apks that you have stored. Simply click one and it will be downloaded automatically.
 
-![](img/token.png)
+![](img/token.png) ![](img/list.png)
 
 
 
