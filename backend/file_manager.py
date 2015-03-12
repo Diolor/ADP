@@ -22,7 +22,7 @@ class FileManager(object):
         else:
             conn = boto.connect_s3(app.config['AWS_KEY'], app.config['AWS_SECRET'])
 
-        self.boto = conn.get_bucket(app.config['AWS_BUCKET'])
+        self.boto = conn.get_bucket(app.config['AWS_BUCKET'], validate=False)
 
     def s3_upload(self, _file, acl='public-read'):
         # Upload the File

@@ -46,12 +46,34 @@ In **config.cfg** file change the **AWS_KEY**, **AWS_SECRET**, **AWS_BUCKET** an
 
 For S3 region codes see [here](http://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region).
 
-TODO write doc for openshift hosting
+The code is ready to work with OpenShift's servers. You can use the awesome free gears that [RedHat's OpenShift servers](https://www.openshift.com) provide with ssl wrapping (create a simple python-2.7 gear). If you use OpenShift your server ip will look like: `https://myadp-user.rhcloud.com`.
+
+Alternatively use your own python server/host.
 
 
 #### 3. CI
 
-An example of a Travis CI file is the following. That will create and upload you 2 build variant apk to the server:
+First you need to expose the verion of your application in your CI tool. A simple way is the following snippet in gradle:
+
+```gradle
+apply plugin: 'com.android.application'
+
+String VERSION_NAME = "1.0.0"
+
+android {
+    defaultConfig {
+        versionName VERSION_NAME
+    }
+}
+
+task version << {
+    println VERSION_NAME
+}
+```
+Running the above you can expose the version in the bash like: `./gradlew -q version`
+
+
+An **example** of a Travis CI file is the following. Adjust the values as needed for your project. This will compile you and upload you 2 build variant apk files to the server:
 
 ```yml
 language: android
@@ -71,8 +93,8 @@ install:
   - export APP_VERSION=`./gradlew -q version`
 
 script:
+  # maybe run some tests here  
   # upload to ADP
-
   - COMMIT_SHORT=${TRAVIS_COMMIT:0:7}
   - COMMIT_MESSAGE=$(git show -s --format=%B $TRAVIS_COMMIT | tr -d '\n')
 
@@ -95,7 +117,14 @@ script:
     -F b=release
 ```
 
-
+The files should be uploaded to `http(s)://MY_SERVER_IP/upload`. The parameters are the following:
+```
+-F f="@pathto/file.apk"
+-F v="the_version"
+-F c="the_commit_id"
+-F n="the_commit_message"   # optional field
+-F b="the_relese_flavor"
+```
 
 
 
@@ -109,9 +138,17 @@ By default the application asks for the base api endpoint of your server and the
 
 
 
+## Costs / alternatives
+
+Assuming that your apk is 20MB and you upload two flavors it will cost you $1/1€ for 830 commits per month.
+Alternative open source solution: [HockeyKit](https://github.com/bitstadium/HockeyKit)
+
+
+
 ## Developed by
 
 * Dionysis Lorentzos - <diolorentzos@gmail.com>
+
 
 
 ## Licence
