@@ -101,7 +101,7 @@ script:
   - >
     curl -X PUT https://myadp-user.rhcloud.com/upload
     -H "Api-Token: $ADP_TOKEN"
-    -F f="@=$TRAVIS_BUILD_DIR/app/app-debug.apk"
+    -F f="@$TRAVIS_BUILD_DIR/app/app-debug.apk"
     -F v="$APP_VERSION"
     -F c="$COMMIT_SHORT"
     -F n="$COMMIT_MESSAGE"
@@ -110,7 +110,7 @@ script:
   - >
     curl -X PUT https://myadp-user.rhcloud.com/upload
     -H "Api-Token: $ADP_TOKEN"
-    -F f="@=$TRAVIS_BUILD_DIR/app/app-release.apk"
+    -F f="@$TRAVIS_BUILD_DIR/app/app-release.apk"
     -F v="$APP_VERSION"
     -F c="$COMMIT_SHORT"
     -F n="$COMMIT_MESSAGE"
@@ -119,7 +119,7 @@ script:
 
 The files should be uploaded to `http(s)://MY_SERVER_IP/upload`. The parameters are the following:
 ```
--F f="@=pathto/file.apk"
+-F f="@pathto/file.apk"
 -F v="the_version"
 -F c="the_commit_id"
 -F n="the_commit_message"   # optional field
@@ -177,4 +177,4 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
-
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-ADP-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/1646)
