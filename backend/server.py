@@ -74,5 +74,7 @@ def get_by_id(file_id):
 
 @app.errorhandler(400)
 @app.errorhandler(403)
+@app.errorhandler(500)
+@app.errorhandler(503)
 def page_not_found(error):
     return dumps({"error": error.description}), error.code

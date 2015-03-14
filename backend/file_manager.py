@@ -24,7 +24,7 @@ class FileManager(object):
 
         self.boto = conn.get_bucket(app.config['AWS_BUCKET'], validate=False)
 
-    def s3_upload(self, _file, acl='public-read'):
+    def s3_upload(self, _file):
         # Upload the File
         sml = self.boto.new_key(_file.filepath)
         sml.set_contents_from_string(_file.source_file.read())

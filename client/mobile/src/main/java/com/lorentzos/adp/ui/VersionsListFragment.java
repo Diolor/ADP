@@ -9,6 +9,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -162,12 +163,17 @@ public class VersionsListFragment extends Fragment implements SwipeRefreshLayout
         public void call(Throwable e) {
             e.printStackTrace();
             if(e instanceof RetrofitError){
-                RestError body = (RestError) ((RetrofitError) e).getBodyAs(RestError.class);
-                switch (((RetrofitError) e).getResponse().getStatus()){
-                    case 400:
-                    case 403:
-                        Toast.makeText(getActivity(), body.error, Toast.LENGTH_SHORT).show();
-                        break;
+                try {
+                    Log.w("body", String.valueOf(((RetrofitError) e).getBody()));
+                    RestError body = (RestError) ((RetrofitError) e).getBodyAs(RestError.class);
+                    switch (((RetrofitError) e).getResponse().getStatus()) {
+                        case 400:
+                        case 403:
+                            Toast.makeText(getActivity(), body.error, Toast.LENGTH_SHORT).show();
+                            break;
+                    }
+                }catch (Exception e1){
+                    e1.printStackTrace();
                 }
             }
             call();
