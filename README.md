@@ -130,7 +130,7 @@ The files should be uploaded to `http(s)://MY_SERVER_IP/upload`. The parameters 
 
 #### 4. Client
 
-You can install the latest client application from [Google Play](https://play.google.com/store/apps/details?id=com.lorentzos.adp.mobile).
+You can install the latest client application from [Google Play](https://play.google.com/store/apps/details?id=com.lorentzos.adp).
 
 By default the application asks for the base api endpoint of your server and the token you choose. Upon saving the preferences you will simply see the list of the availiable apks that you have stored. Simply click one and it will be downloaded automatically.
 
