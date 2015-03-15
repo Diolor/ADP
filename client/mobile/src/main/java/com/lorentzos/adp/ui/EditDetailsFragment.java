@@ -1,9 +1,11 @@
 package com.lorentzos.adp.ui;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,12 +56,12 @@ public class EditDetailsFragment extends Fragment {
                 .putString(Config.PREF_TOKEN, mToken.getText().toString())
                 .commit();
 
-        if(getActivity() instanceof EditDetailsActivity)
+        if(getActivity() instanceof EditDetailsActivity) {
+            getActivity().setResult(Activity.RESULT_OK);
             getActivity().finish();
-        else
-            getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, new VersionsListFragment(), VersionsListFragment.TAG)
-                .commit();
+        }else
+            VersionsLoadingFragment.replace((ActionBarActivity) getActivity());
+
     }
 
 }

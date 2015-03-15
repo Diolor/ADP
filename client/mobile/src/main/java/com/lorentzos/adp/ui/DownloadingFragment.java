@@ -29,16 +29,16 @@ import static rx.android.app.AppObservable.bindFragment;
  * for package com.lorentzos.adp.ui
  * Use with caution dinosaurs might appear!
  */
-public class LoadingFragment extends Fragment {
+public class DownloadingFragment extends Fragment {
 
 
-    public static final String TAG = LoadingFragment.class.getSimpleName();
+    public static final String TAG = DownloadingFragment.class.getSimpleName();
     private static final String ARG_FILE_ID = "fileID";
     private static final int CODE_INSTALLER = 100;
 
 
-    public static LoadingFragment newInstance(String fileID) {
-        LoadingFragment fragment = new LoadingFragment();
+    public static DownloadingFragment newInstance(String fileID) {
+        DownloadingFragment fragment = new DownloadingFragment();
         Bundle args = new Bundle();
         args.putString(ARG_FILE_ID, fileID);
         fragment.setArguments(args);
@@ -47,18 +47,12 @@ public class LoadingFragment extends Fragment {
 
 
     public static void show(ActionBarActivity activity, String fileID) {
-        LoadingFragment f = LoadingFragment.newInstance(fileID);
+        DownloadingFragment f = DownloadingFragment.newInstance(fileID);
 
         activity.getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, f, LoadingFragment.TAG)
-                .addToBackStack(LoadingFragment.TAG)
+                .replace(R.id.container, f, TAG)
+                .addToBackStack(TAG)
                 .commit();
-    }
-
-    public static void dismiss(ActionBarActivity activity) {
-        Fragment fragment = activity.getSupportFragmentManager().findFragmentByTag(LoadingFragment.TAG);
-        if(fragment != null)
-            activity.getSupportFragmentManager().beginTransaction().remove(fragment).commit();
     }
 
 
@@ -74,7 +68,7 @@ public class LoadingFragment extends Fragment {
         SharedPreferencesUtil preferences = new SharedPreferencesUtil(getActivity());
         API api = API.getInstance(preferences.getUrl(), preferences.getToken());
 
-        bindFragment(LoadingFragment.this, api.getAPK(id))
+        bindFragment(DownloadingFragment.this, api.getAPK(id))
                 .map(response -> ((TypedByteArray) response.getBody()).getBytes())
                 .subscribe(bytes -> {
                     try {

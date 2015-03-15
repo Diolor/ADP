@@ -58,6 +58,7 @@ public class API {
 
     private RestAdapter buildRestAdapter(String baseUrl, String token) {
         return new RestAdapter.Builder()
+                .setLogLevel(RestAdapter.LogLevel.FULL)
                 .setEndpoint(baseUrl)
                 .setClient(getHttpClient())
                 .setRequestInterceptor(request -> request.addHeader("Api-Token", token))

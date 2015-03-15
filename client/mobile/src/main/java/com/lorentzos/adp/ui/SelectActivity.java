@@ -29,7 +29,7 @@ public class SelectActivity extends ActionBarActivity {
                 // TODO replace EditDetailsFragment with a custom SettingsActivity
                 fragment = new EditDetailsFragment();
             }else {
-                fragment = new VersionsListFragment();
+                fragment = new VersionsLoadingFragment();
             }
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, fragment)

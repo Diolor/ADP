@@ -1,6 +1,15 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'org.moallemi.advanced-build-version'
+
+advancedVersioning {
+    nameOptions {
+        versionMajor 0
+        versionMinor 1
+        versionPatch 1
+    }
+}
 
 android {
     compileSdkVersion 22
@@ -10,8 +19,6 @@ android {
         applicationId "com.lorentzos.adp.mobile"
         minSdkVersion 15
         targetSdkVersion 22
-        versionCode 1
-        versionName "0.1"
     }
 
     compileOptions {
@@ -28,7 +35,6 @@ android {
 
 dependencies {
     apt 'com.github.frankiesardo:auto-parcel-processor:0.3'
-//    apt 'com.github.frankiesardo:android-auto-value-processor:0.1'
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
 

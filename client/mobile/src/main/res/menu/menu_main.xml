@@ -6,7 +6,6 @@
         android:title="@string/sort_by"
         android:orderInCategory="100"  />
 
-
     <item android:id="@+id/action_settings"
         android:title="@string/action_settings"
         android:orderInCategory="200"  />
