@@ -1,5 +1,7 @@
 package com.lorentzos.adp.network;
 
+import android.util.Log;
+
 import com.lorentzos.adp.Config;
 import com.lorentzos.adp.model.BuildsList;
 import com.squareup.okhttp.OkHttpClient;
@@ -11,6 +13,8 @@ import retrofit.client.Client;
 import retrofit.client.OkClient;
 import retrofit.client.Response;
 import rx.Observable;
+import rx.plugins.RxJavaErrorHandler;
+import rx.plugins.RxJavaPlugins;
 
 /**
  * Created by dionysis_lorentzos on 7/12/14
@@ -45,20 +49,19 @@ public class API {
         RestAdapter restAdapter = buildRestAdapter(baseUrl, token);
         endpoints = restAdapter.create(Endpoints.class);
 
-//        if(RxJavaPlugins.getInstance().getErrorHandler() == null)
-//            RxJavaPlugins.getInstance().registerErrorHandler(new RxJavaErrorHandler() {
-//                @Override
-//                public void handleError(Throwable e) {
-//
-//                    Log.w(RxJavaErrorHandler.class.getSimpleName(), e);
-//                    super.handleError(e);
-//                }
-//            });
+        if(RxJavaPlugins.getInstance().getErrorHandler() == null)
+            RxJavaPlugins.getInstance().registerErrorHandler(new RxJavaErrorHandler() {
+                @Override
+                public void handleError(Throwable e) {
+
+                    Log.w(RxJavaErrorHandler.class.getSimpleName(), e);
+                    super.handleError(e);
+                }
+            });
     }
 
     private RestAdapter buildRestAdapter(String baseUrl, String token) {
         return new RestAdapter.Builder()
-                .setLogLevel(RestAdapter.LogLevel.FULL)
                 .setEndpoint(baseUrl)
                 .setClient(getHttpClient())
                 .setRequestInterceptor(request -> request.addHeader("Api-Token", token))

@@ -79,14 +79,17 @@ public class DownloadingFragment extends Fragment {
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivityForResult(intent, CODE_INSTALLER);
                     } catch (IOException e) {
-                        e.printStackTrace();
-                        Toast.makeText(getActivity(),R.string.something_went_wrong, Toast.LENGTH_SHORT).show();
-                        finish();
+                        finish(e);
                     }
-                });
+                }, this::finish);
         return rootView;
     }
 
+    private void finish(Throwable e) {
+        e.printStackTrace();
+        Toast.makeText(getActivity(), R.string.something_went_wrong, Toast.LENGTH_SHORT).show();
+        finish();
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
